@@ -1,0 +1,35 @@
+\document{article}
+\usepackage[symbols]{circuitikz}
+\usepackage{tikz}
+\usepackage{verbatim}
+
+
+
+\begin{document}
+
+
+\begin{circuitikz}\draw
+	(0,0) to [C, l=10<\micro\farad>](0,2) -- (0,3)
+			to [R, l=2.2<\kilo\ohm>](4,3) -- (4,2)
+			to [L, l=12<\milli\henry>, i=$i_{1.1}$](4,0) -- (0,0)
+	(4,2) to { to [ D*, *-*, color=red] (2,0)}
+	(0,2) to [R, l=1<\kilo\ohm> *-] (2,2)
+			to [cV, v=$\SI {.3} {\kilo\ohm}i_{1.1}$] (4,2)
+	(2,0) to [I, i=1<\milli\ampere>, *-] (2,2)
+	;
+\end{circuitkz}
+
+\begin{circuitikz} \draw
+ (0,0) node[ground] {}
+  to[V, v=$e(t)$, *-*] (0,2) to[C, l=$4\nano\farad$] (2,2)
+  to [R, l=$\frac{1}{4}\kilo\ohm$, *-*] (2,0)
+ (2,2) to[R, l=$1\kilo\ohm$] (4,2)
+  to[C, l=$2\nano\farad$:-90, *-*] (4,0)
+ (5,0) to[I, i=$a(t)$:-90, -*] (5,2) -- (4,2)
+ (0,0) -- (5,0)
+ (0,2) -- (0,3) to[L, l=$2\milli\henry$] (5,3) -- (5,2)
+
+ {[anchor=south east] (0,2) node {1} (2,2) node {2} (4,2) node {3}}
+;\end{circuitikz}
+
+\end{document}
